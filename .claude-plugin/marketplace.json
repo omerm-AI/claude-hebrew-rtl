@@ -1,0 +1,1 @@
+{ "name": "maind-mods", "owner": { "name": "mAind" }, "plugins": [ { "name": "hebrew-rtl", "source": "./mods/hebrew-rtl", "description": "Draws Hebrew right to left in the Claude desktop app (Code tab)" } ] }
