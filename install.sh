@@ -17,7 +17,7 @@ CFG="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
 DEST="$CFG/maind-mods"
 MOD="$DEST/mods/hebrew-rtl"
 ID="hebrew-rtl@maind-mods"
-VERSION="0.3.1"
+VERSION="0.3.2"
 
 fail() { echo; echo "RESULT: FAILED - $1"; exit 1; }
 step() { echo; echo "== $1"; }

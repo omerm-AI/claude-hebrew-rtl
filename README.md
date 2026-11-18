@@ -80,4 +80,4 @@ claude plugin validate mods/hebrew-rtl
 claude plugin test mods/hebrew-rtl
 ```
 
-Version 0.3.1. Tested on macOS with Claude Code 2.1.325 and on Android through Remote Control.
+Version 0.3.2. Tested on macOS with Claude Code 2.1.325 and on Android through Remote Control.

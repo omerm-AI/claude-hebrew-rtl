@@ -3,7 +3,7 @@ import type { Register } from 'claude-code'
 import { embed, embedLines, hasHebrew, isHebrewReply, renderLines, renderReply } from './rtl'
 import { rtlMarkdown } from './native'
 
-// hebrew-rtl 0.3.1: Hebrew right to left in Claude Code sessions of the Claude desktop app.
+// hebrew-rtl 0.3.2: Hebrew right to left in Claude Code sessions of the Claude desktop app.
 //
 // Two mechanisms, because two kinds of screen show the same conversation:
 //   1. The desktop app (Code tab) ignores `dir` but draws what a mod hands it,
@@ -11,7 +11,8 @@ import { rtlMarkdown } from './native'
 //   2. The phone app shows the saved reply with its own renderer and takes no
 //      drawing from a mod, so the reply's lists are rewritten as right-to-left
 //      lines just before the reply is saved (native.tsx).
-// Other surfaces (terminal, headless runs) are left alone.
+// A session that runs in the cloud draws nothing from a mod, so only the second
+// mechanism applies there. Terminal sessions and headless runs are left alone.
 
 // The surface the session started on; the save-time rewrite runs for the desktop app alone.
 let startedOn: string | null = null
@@ -19,6 +20,8 @@ let startedOn: string | null = null
 // headless run or a terminal session never sets it, so their replies are
 // saved as written.
 let sawApp = false
+// True in a session that runs in the cloud, where nothing is drawn by a mod at all.
+let inCloud = false
 // Invisible padding after a short block or a heading: 60 em spaces. On the
 // phone it stretches the block to the full width, so the Hebrew sits at the
 // right, and adds no line (seen on Android, 2026-11-18; a mark after the
@@ -29,6 +32,12 @@ const PAD = '\u2003'.repeat(60)
 export const register: Register = on => {
   on('session.start', async ($, e, next) => {
     startedOn = e.surface
+    try {
+      inCloud =
+        Boolean(await $.env.get('CLAUDE_CODE_REMOTE_SESSION_ID')) || (await $.env.get('CLAUDE_CODE_REMOTE')) === 'true'
+    } catch {
+      inCloud = false
+    }
     return next(e)
   })
 
@@ -49,7 +58,7 @@ export const register: Register = on => {
     let changed = false
     const out = content.map((b: any) => {
       if (!b || b.type !== 'text' || typeof b.text !== 'string') return b
-      if (!(startedOn === 'desktop' || startedOn === 'mobile' || sawApp) || e.agentId || !isHebrewReply(b.text)) return b
+      if (!(startedOn === 'desktop' || startedOn === 'mobile' || sawApp || inCloud) || e.agentId || !isHebrewReply(b.text)) return b
       const text = rtlMarkdown(b.text, { pad: PAD, padBodyBelow: 60, padHeadingBelow: 40 })
       if (text === b.text) return b
       changed = true
