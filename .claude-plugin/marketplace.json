@@ -1,1 +1,14 @@
-{ "name": "maind-mods", "owner": { "name": "mAind" }, "plugins": [ { "name": "hebrew-rtl", "source": "./mods/hebrew-rtl", "description": "Draws Hebrew right to left in the Claude desktop app (Code tab)" } ] }
+{
+  "name": "maind-mods",
+  "owner": {
+    "name": "mAind"
+  },
+  "plugins": [
+    {
+      "name": "hebrew-rtl",
+      "source": "./mods/hebrew-rtl",
+      "description": "Hebrew right to left in Claude Code: the desktop app draws replies right to left, and replies are saved so the phone app shows lists, short lines and headings on the right"
+    }
+  ],
+  "description": "Hebrew right to left in Claude Code, on the computer and on the phone"
+}

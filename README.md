@@ -5,7 +5,28 @@ Hebrew right to left in Claude Code, on the computer and on the phone.
 ![Before](docs/images/before.png)
 ![After](docs/images/after.png)
 
-## התקנה מהירה
+## התקנה: שתי דרכים
+
+| דרך | מה היא מכסה | מה צריך |
+| --- | --- | --- |
+| א. לחשבון, ב-claude.ai | גם שיחות שרצות בענן, כולל כאלה שנפתחות מהטלפון. התוסף מסתנכרן גם לשיחות Code במחשב. | חשבון GitHub, או קובץ התוסף להעלאה |
+| ב. למחשב, בהדבקת קישור ב-Claude Code | שיחות Code שרצות על ה-Mac, והצפייה בהן מהטלפון | Mac |
+
+אפשר להתקין בשתי הדרכים יחד.
+
+### דרך א: לחשבון
+
+1. פתחו את [claude.ai](https://claude.ai/customize/plugins), ושם Customize ואז Plugins.
+2. לחצו Add ובחרו Add marketplace.
+3. הדביקו `omerm-AI/claude-hebrew-rtl` ואשרו. אם התבקשתם, התחברו ל-GitHub.
+4. ברשימה שנפתחת הוסיפו את התוסף Hebrew rtl.
+5. פתחו שיחה חדשה. השינוי חל על שיחות חדשות.
+
+בלי חשבון GitHub: הורידו את הקובץ [hebrew-rtl.plugin](dist/hebrew-rtl.plugin), ובאותו מסך בחרו Add ואז Upload plugin. הדרך הזאת לא נבדקה.
+
+בדף התוסף מופיע הכיתוב "Can run code without asking". זה נכון: התוסף מריץ קוד בכל שיחה כדי לסדר את העברית. הקוד פתוח לקריאה כאן, ולא שולח מידע לשום מקום.
+
+### דרך ב: למחשב
 
 1. פתחו את אפליקציית Claude ב-Mac, עברו ללשונית Code, ופתחו שיחה חדשה.
 2. הדביקו את השורה הבאה ושלחו:
@@ -30,10 +51,11 @@ follow it exactly, step by step. Do not improvise and do not rewrite any file.
 | --- | --- |
 | Claude desktop app on a Mac, Code tab | Replies are drawn right to left: paragraphs, headings, bullets, numbered and nested lists, quotes, wrapped lines included. Tables read right to left. Code stays left to right. Your own prompts and question dialogs read in the right order. |
 | Claude phone app, for sessions that run on that Mac | New replies are saved so that bullets, numbers, short lines and headings sit on the right. Seen on Android; not checked on iPhone. |
+| Sessions that run in the cloud, opened from the phone | The same, when the mod is installed on the claude.ai account (way A above). Seen on Android. |
 | Browser and Cowork | Nothing to install: Hebrew is already laid out right to left there. |
 
-Not covered: Windows, sessions that run in the cloud rather than on your Mac, and the app's own
-chrome (sidebar, menus, the message box).
+Not covered: Windows for the paste-a-link install, and the app's own chrome (sidebar, menus,
+the message box). In a cloud session a mod draws nothing, so only the saved-reply fix applies there.
 
 ## What to know before installing
 
